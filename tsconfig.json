@@ -10,13 +10,16 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["*"],
       "@config/*": ["config/*"],
       "@context/*": ["context/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@routes/*": ["routes/*"]
     }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
-} 
+}
