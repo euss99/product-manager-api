@@ -4,13 +4,11 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 
-export default [
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     ignores: ["node_modules/**", "dist/**", "coverage/**", ".git/**"],
-  },
-  eslint.configs.recommended,
-  {
-    files: ["**/*.ts"],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -29,8 +27,11 @@ export default [
     rules: {
       "@typescript-eslint/explicit-function-return-type": "warn",
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+      "no-console": "off",
       "no-duplicate-imports": "error",
       "no-unused-expressions": "error",
       "no-unused-vars": "off",
@@ -39,5 +40,5 @@ export default [
       indent: ["error", 2],
       quotes: ["error", "double"],
     },
-  },
-];
+  }
+);
