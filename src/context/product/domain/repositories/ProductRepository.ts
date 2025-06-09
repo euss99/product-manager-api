@@ -1,4 +1,4 @@
-import { Product } from "@context/product/domain/entities/product.entity";
+import { Product } from "@/context/product/domain/entities/Product";
 
 export interface ProductRepository {
   save(product: Product): Promise<Product>;

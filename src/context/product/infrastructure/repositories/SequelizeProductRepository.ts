@@ -1,6 +1,6 @@
-import { Product } from "@context/product/domain/entities/product.entity";
-import { ProductRepository } from "@context/product/domain/repositories/product.repository";
-import { ProductModel } from "@context/product/infrastructure/models/product.model";
+import { Product } from "@/context/product/domain/entities/Product";
+import { ProductRepository } from "@/context/product/domain/repositories/ProductRepository";
+import { ProductModel } from "@/context/product/infrastructure/models/ProductModel";
 
 export class SequelizeProductRepository implements ProductRepository {
   async save(product: Product): Promise<Product> {
