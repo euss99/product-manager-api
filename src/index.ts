@@ -1,8 +1,9 @@
-import { initDatabase } from "@config/db.config";
-import { envConfig } from "@config/env.config";
-import productRoutes from "@routes/product.routes";
 import colors from "colors";
 import express from "express";
+
+import { initDatabase } from "@/config/database";
+import { envConfig } from "@/config/env.config";
+import productRoutes from "@/routes/ProducRoutes";
 
 const app = express();
 const port = envConfig.PORT;
@@ -19,7 +20,9 @@ const startServer = async (): Promise<void> => {
     await initDatabase();
 
     app.listen(port, () => {
-      console.log(colors.green(`🚀 Servidor corriendo en http://localhost:${port}`));
+      console.log(
+        colors.green(`🚀 Servidor corriendo en http://localhost:${port}`)
+      );
       console.log(colors.cyan(`🌍 Ambiente: ${envConfig.NODE_ENV}`));
     });
   } catch (error) {

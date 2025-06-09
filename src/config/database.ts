@@ -1,7 +1,8 @@
-import { envConfig } from "@config/env.config";
-import { ProductModel } from "@context/product/infrastructure/models/product.model";
 import colors from "colors";
 import { Sequelize } from "sequelize-typescript";
+
+import { envConfig } from "@/config/env.config";
+import { ProductModel } from "@/context/product/infrastructure/models/ProductModel";
 
 const db = new Sequelize(
   envConfig.DB_NAME,
@@ -30,7 +31,7 @@ export const initDatabase = async (): Promise<void> => {
 
     // Sincronizar modelos con la base de datos
     await db.sync();
-    console.log(colors.blue("✅ Modelos sincronizados con la base de datos."));
+    console.log(colors.green("✅ Modelos sincronizados con la base de datos."));
   } catch (error) {
     console.error(
       colors.red("❌ Error al conectar con la base de datos:"),
@@ -39,5 +40,3 @@ export const initDatabase = async (): Promise<void> => {
     throw error;
   }
 };
-
-export default db;

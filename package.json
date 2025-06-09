@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "API REST con Node.js y TypeScript para la gestión de productos, implementando operaciones CRUD con PostgreSQL, Express y Sequelize.",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "lint": "eslint ."
   },
   "repository": {
