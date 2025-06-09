@@ -1,27 +1,22 @@
-import eslint from "@eslint/js";
 import globals from "globals";
+import js from "@eslint/js"
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsparser from "@typescript-eslint/parser";
+import tseslint from "typescript-eslint"
 
 export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  { ignores: ["dist"] },
   {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     ignores: ["node_modules/**", "dist/**", "coverage/**", ".git/**"],
+    files: ["src/**/*.ts"],
     languageOptions: {
-      parser: tsparser,
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
       },
-      globals: {
-        ...globals.node,
-        ...globals.es2021,
-      },
+      globals: globals.browser,
     },
     plugins: {
-      "@typescript-eslint": tseslint,
       "simple-import-sort": simpleImportSort,
     },
     rules: {

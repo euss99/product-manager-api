@@ -1,23 +1,20 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "useDefineForClassFields": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "baseUrl": "./src",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {
-      "@/*": ["*"],
-      "@config/*": ["config/*"],
-      "@context/*": ["context/*"],
-      "@shared/*": ["shared/*"],
-      "@routes/*": ["routes/*"]
+      "@/*": ["./src/*"],
+      "@config/*": ["./src/config/*"],
+      "@context/*": ["./src/context/*"],
+      "@routes/*": ["./src/routes/*"]
     }
   },
   "include": ["src/**/*"],

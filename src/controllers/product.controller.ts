@@ -1,8 +1,8 @@
 import { CreateProductUseCase } from "@context/product/application/create-product.use-case";
+import { SequelizeProductRepository } from "@context/product/infrastructure/repositories/sequelize-product.repository";
 import { Request, Response } from "express";
 import { ZodError } from "zod";
 
-import { SequelizeProductRepository } from "@/context/product/infrastructure/repositories/sequelize-product.repository";
 
 export class ProductController {
   private createProductUseCase: CreateProductUseCase;

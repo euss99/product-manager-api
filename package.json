@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "API REST con Node.js y TypeScript para la gestión de productos, implementando operaciones CRUD con PostgreSQL, Express y Sequelize.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest --detectOpenHandles",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -16,9 +16,6 @@
   },
   "author": "Uriel Solis Salinas",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/euss99/product-manager-api/issues"
-  },
   "homepage": "https://github.com/euss99/product-manager-api#readme",
   "dependencies": {
     "colors": "^1.4.0",
@@ -42,7 +39,6 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^10.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
@@ -56,6 +52,7 @@
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   }
 }

@@ -1,7 +1,7 @@
-import colors from "colors";
-import { initDatabase } from "@/config/db.config";
+import { initDatabase } from "@config/db.config";
 import { envConfig } from "@config/env.config";
 import productRoutes from "@routes/product.routes";
+import colors from "colors";
 import express from "express";
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/api/products", productRoutes);
 
 // Inicializar la base de datos y luego iniciar el servidor
-const startServer = async () => {
+const startServer = async (): Promise<void> => {
   try {
     await initDatabase();
 
