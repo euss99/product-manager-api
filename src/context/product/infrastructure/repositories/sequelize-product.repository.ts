@@ -13,7 +13,7 @@ export class SequelizeProductRepository implements ProductRepository {
     );
   }
 
-  async findById(id: string): Promise<Product | null> {
+  async findById(id: Product["id"]): Promise<Product | null> {
     const productModel = await ProductModel.findByPk(id);
     if (!productModel) return null;
 
@@ -38,7 +38,7 @@ export class SequelizeProductRepository implements ProductRepository {
     );
   }
 
-  async update(id: string, product: Product): Promise<Product> {
+  async update(id: Product["id"], product: Product): Promise<Product> {
     const productModel = await ProductModel.findByPk(id);
     if (!productModel) throw new Error("Product not found");
 
@@ -51,7 +51,7 @@ export class SequelizeProductRepository implements ProductRepository {
     );
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: Product["id"]): Promise<void> {
     const productModel = await ProductModel.findByPk(id);
     if (!productModel) throw new Error("Product not found");
     await productModel.destroy();

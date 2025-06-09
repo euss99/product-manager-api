@@ -6,7 +6,7 @@ export class Product {
   private description: string;
   private price: number;
 
-  constructor(name: string, description: string, price: number, id?: string) {
+  constructor(name: string, description: string, price: number, id?: Product["id"]) {
     this.id = id || uuidv4();
     this.name = name;
     this.description = description;
@@ -47,7 +47,7 @@ export class Product {
   }
 
   // Método para convertir la entidad a un objeto plano
-  toJSON(): { id: string; name: string; description: string; price: number } {
+  toJSON(): { id: Product["id"]; name: string; description: string; price: number } {
     return {
       id: this.id,
       name: this.name,
