@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { ProductController } from "@/context/product/infrastructure/controllers/ProductController";
+import { authMiddleware } from "@/helpers/middlewares/auth.middleware";
 import { validateSchema } from "@/helpers/middlewares/validateSchema";
 import { idParamSchema } from "@/helpers/validations/params.validation";
 import {
@@ -10,6 +11,8 @@ import {
 
 const router = Router();
 const productController = new ProductController();
+
+router.use(authMiddleware);
 
 // Rutas para productos
 router.get("/", productController.getAllProducts.bind(productController));
