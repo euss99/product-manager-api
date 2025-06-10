@@ -1,5 +1,6 @@
 import { User } from "@/context/user/domain/entities/User";
 import { UserRepository } from "@/context/user/domain/repositories/UserRepository";
+import { encryptPassword } from "@/helpers/services/PasswordService";
 
 export interface CreateUserDTO {
   name: string;
@@ -18,10 +19,12 @@ export class CreateUserUseCase {
       throw new Error("User with this email already exists");
     }
 
+    const hashedPassword = await encryptPassword(userData.password);
+
     const user = new User(
       userData.name,
       userData.email,
-      userData.password,
+      hashedPassword,
       userData.birthday
     );
 
