@@ -17,10 +17,9 @@ export class UpdateProductUseCase {
     const existingProduct = await this.productRepository.findById(id);
 
     if (!existingProduct) {
-      throw new Error("Producto no encontrado");
+      throw new Error("Product not found");
     }
 
-    // Actualizar solo los campos proporcionados
     if (productData.name) existingProduct.setName(productData.name);
     if (productData.description)
       existingProduct.setDescription(productData.description);

@@ -37,7 +37,7 @@ export class ProductController {
       const { id } = req.params;
       const product = await this.getProductByIdUseCase.execute(id);
       if (!product) {
-        res.status(404).json({ error: "Producto no encontrado" });
+        res.status(404).json({ error: "Product not found" });
         return;
       }
       res.status(200).json(product);
@@ -69,7 +69,9 @@ export class ProductController {
     try {
       const { id } = req.params;
       await this.deleteProductUseCase.execute(id);
-      res.status(204).send();
+      res.status(200).json({
+        message: "Product deleted successfully",
+      });
     } catch (error) {
       res.status(400).json({ error: (error as Error).message });
     }

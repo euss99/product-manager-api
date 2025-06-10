@@ -8,7 +8,7 @@ export class DeleteProductUseCase {
     const existingProduct = await this.productRepository.findById(id);
 
     if (!existingProduct) {
-      throw new Error("Producto no encontrado");
+      throw new Error("Product not found");
     }
 
     await this.productRepository.delete(id);

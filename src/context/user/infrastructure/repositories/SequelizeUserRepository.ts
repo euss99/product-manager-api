@@ -14,7 +14,7 @@ export class SequelizeUserRepository implements UserRepository {
     );
   }
 
-  async findById(id: string): Promise<User | null> {
+  async findById(id: User["id"]): Promise<User | null> {
     const userModel = await UserModel.findByPk(id);
     if (!userModel) return null;
 
@@ -38,5 +38,11 @@ export class SequelizeUserRepository implements UserRepository {
       userModel.birthday,
       userModel.id
     );
+  }
+
+  async delete(id: User["id"]): Promise<void> {
+    const userModel = await UserModel.findByPk(id);
+    if (!userModel) throw new Error("User not found");
+    await userModel.destroy();
   }
 }
