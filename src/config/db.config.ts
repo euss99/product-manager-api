@@ -5,12 +5,12 @@ import { envConfig } from "@/config/env.config";
 import { ProductModel } from "@/context/product/infrastructure/models/ProductModel";
 
 const db = new Sequelize(
-  envConfig.DB_NAME,
-  envConfig.DB_USER,
+  envConfig.DB_DATA_BASE,
+  envConfig.DB_USER_NAME,
   envConfig.DB_PASSWORD,
   {
     dialect: "postgres",
-    host: envConfig.DB_HOST,
+    host: envConfig.DB_HOST_NAME,
     port: Number(envConfig.DB_PORT),
     models: [ProductModel],
     logging: false,

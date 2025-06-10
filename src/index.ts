@@ -1,7 +1,7 @@
 import colors from "colors";
 import express from "express";
 
-import { initDatabase } from "@/config/database";
+import { initDatabase } from "@/config/db.config";
 import { envConfig } from "@/config/env.config";
 import productRoutes from "@/routes/ProducRoutes";
 

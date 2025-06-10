@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { ProductController } from "@/controllers/ProductController";
+import { ProductController } from "@/context/product/infrastructure/controllers/ProductController";
 import { validate } from "@/helpers/middlewares/validate";
 import { idParamSchema } from "@/helpers/validations/params.validation";
 import {
