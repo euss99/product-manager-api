@@ -3,6 +3,7 @@ import express from "express";
 
 import { initDatabase } from "@/config/db.config";
 import { envConfig } from "@/config/env.config";
+import authRoutes from "@/routes/AuthRoutes";
 import productRoutes from "@/routes/ProducRoutes";
 import userRoutes from "@/routes/UserRoutes";
 
@@ -13,6 +14,7 @@ const port = envConfig.PORT;
 app.use(express.json());
 
 // Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 
