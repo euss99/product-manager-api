@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 
 import { envConfig } from "@/config/env.config";
 import { ProductModel } from "@/context/product/infrastructure/models/ProductModel";
+import { UserModel } from "@/context/user/infrastructure/models/UserModel";
 
 const db = new Sequelize(
   envConfig.DB_DATA_BASE,
@@ -12,7 +13,7 @@ const db = new Sequelize(
     dialect: "postgres",
     host: envConfig.DB_HOST_NAME,
     port: Number(envConfig.DB_PORT),
-    models: [ProductModel],
+    models: [ProductModel, UserModel],
     logging: false,
     dialectOptions: {
       ssl: {
@@ -29,7 +30,6 @@ export const initDatabase = async (): Promise<void> => {
       colors.green("✅ Conexión a la base de datos establecida correctamente.")
     );
 
-    // Sincronizar modelos con la base de datos
     await db.sync();
     console.log(colors.green("✅ Modelos sincronizados con la base de datos."));
   } catch (error) {

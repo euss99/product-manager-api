@@ -4,6 +4,7 @@ import express from "express";
 import { initDatabase } from "@/config/db.config";
 import { envConfig } from "@/config/env.config";
 import productRoutes from "@/routes/ProducRoutes";
+import userRoutes from "@/routes/UserRoutes";
 
 const app = express();
 const port = envConfig.PORT;
@@ -13,8 +14,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
-// Inicializar la base de datos y luego iniciar el servidor
 const startServer = async (): Promise<void> => {
   try {
     await initDatabase();
