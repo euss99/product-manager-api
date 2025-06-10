@@ -5,12 +5,20 @@ export class Product {
   private name: string;
   private description: string;
   private price: number;
+  private availability: boolean;
 
-  constructor(name: string, description: string, price: number, id?: Product["id"]) {
+  constructor(
+    name: string,
+    description: string,
+    price: number,
+    id?: Product["id"],
+    availability?: boolean
+  ) {
     this.id = id || uuidv4();
     this.name = name;
     this.description = description;
     this.price = price;
+    this.availability = availability ?? true;
   }
 
   // Getters
@@ -30,6 +38,10 @@ export class Product {
     return this.price;
   }
 
+  getAvailability(): boolean {
+    return this.availability;
+  }
+
   // Setters
   setName(name: string): void {
     this.name = name;
@@ -46,14 +58,24 @@ export class Product {
     this.price = price;
   }
 
+  toggleAvailability(): void {
+    this.availability = !this.availability;
+  }
+
   // Método para convertir la entidad a un objeto plano
-  toJSON(): { id: Product["id"]; name: string; description: string; price: number } {
+  toJSON(): {
+    id: Product["id"];
+    name: string;
+    description: string;
+    price: number;
+    availability: boolean;
+    } {
     return {
       id: this.id,
       name: this.name,
       description: this.description,
       price: this.price,
+      availability: this.availability,
     };
   }
 }
- 

@@ -9,7 +9,8 @@ export class SequelizeProductRepository implements ProductRepository {
       productModel.name,
       productModel.description,
       Number(productModel.price),
-      productModel.id
+      productModel.id,
+      productModel.availability
     );
   }
 
@@ -21,7 +22,8 @@ export class SequelizeProductRepository implements ProductRepository {
       productModel.name,
       productModel.description,
       Number(productModel.price),
-      productModel.id
+      productModel.id,
+      productModel.availability
     );
   }
 
@@ -33,21 +35,25 @@ export class SequelizeProductRepository implements ProductRepository {
           model.name,
           model.description,
           Number(model.price),
-          model.id
+          model.id,
+          model.availability
         )
     );
   }
 
   async update(id: Product["id"], product: Product): Promise<Product> {
     const productModel = await ProductModel.findByPk(id);
+
     if (!productModel) throw new Error("Product not found");
 
     await productModel.update(product.toJSON());
+
     return new Product(
       productModel.name,
       productModel.description,
       Number(productModel.price),
-      productModel.id
+      productModel.id,
+      productModel.availability
     );
   }
 

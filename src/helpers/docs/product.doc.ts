@@ -68,7 +68,6 @@
  *               - name
  *               - description
  *               - price
- *               - stock
  *             properties:
  *               name:
  *                 type: string
@@ -76,8 +75,6 @@
  *                 type: string
  *               price:
  *                 type: number
- *               stock:
- *                 type: integer
  *     responses:
  *       201:
  *         description: Producto creado exitosamente
@@ -122,8 +119,6 @@
  *                 type: string
  *               price:
  *                 type: number
- *               stock:
- *                 type: integer
  *     responses:
  *       200:
  *         description: Producto actualizado exitosamente
@@ -158,6 +153,48 @@
  *     responses:
  *       200:
  *         description: Producto eliminado exitosamente
+ *       404:
+ *         description: Producto no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * /api/products/{id}/availability:
+ *   patch:
+ *     tags: [Products]
+ *     summary: Actualizar disponibilidad del producto
+ *     description: Actualiza el estado de disponibilidad de un producto específico
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID del producto a actualizar
+ *     responses:
+ *       200:
+ *         description: Disponibilidad del producto actualizada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Product availability updated successfully"
+ *       400:
+ *         description: Error al actualizar la disponibilidad
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: Producto no encontrado
  *         content:

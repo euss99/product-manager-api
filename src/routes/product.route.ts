@@ -36,6 +36,13 @@ router.put(
   productController.updateProduct.bind(productController)
 );
 
+router.patch(
+  "/:id/availability",
+  schemaMiddleware(idParamSchema, "params"),
+  authMiddleware,
+  productController.updateAvailabilityProduct.bind(productController)
+);
+
 router.delete(
   "/:id",
   schemaMiddleware(idParamSchema, "params"),

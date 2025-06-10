@@ -55,9 +55,6 @@ const options: swaggerJsdoc.Options = {
             price: {
               type: "number",
             },
-            stock: {
-              type: "integer",
-            },
             createdAt: {
               type: "string",
               format: "date-time",

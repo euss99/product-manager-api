@@ -4,6 +4,7 @@ import { CreateProductUseCase } from "@/context/product/application/CreateProduc
 import { DeleteProductUseCase } from "@/context/product/application/DeleteProductUseCase";
 import { GetAllProductsUseCase } from "@/context/product/application/GetAllProductsUseCase";
 import { GetProductByIdUseCase } from "@/context/product/application/GetProductByIdUseCase";
+import { UpdateAvailabilityProductUseCase } from "@/context/product/application/UpdateAvailabilityProductUseCase";
 import { UpdateProductUseCase } from "@/context/product/application/UpdateProductUseCase";
 import { SequelizeProductRepository } from "@/context/product/infrastructure/repositories/SequelizeProductRepository";
 
@@ -13,6 +14,7 @@ export class ProductController {
   private getAllProductsUseCase: GetAllProductsUseCase;
   private updateProductUseCase: UpdateProductUseCase;
   private deleteProductUseCase: DeleteProductUseCase;
+  private updateAvailabilityProductUseCase: UpdateAvailabilityProductUseCase;
 
   constructor() {
     const productRepository = new SequelizeProductRepository();
@@ -21,6 +23,7 @@ export class ProductController {
     this.getAllProductsUseCase = new GetAllProductsUseCase(productRepository);
     this.updateProductUseCase = new UpdateProductUseCase(productRepository);
     this.deleteProductUseCase = new DeleteProductUseCase(productRepository);
+    this.updateAvailabilityProductUseCase = new UpdateAvailabilityProductUseCase(productRepository);
   }
 
   async createProduct(req: Request, res: Response): Promise<void> {
@@ -58,8 +61,18 @@ export class ProductController {
   async updateProduct(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.params;
-      const product = await this.updateProductUseCase.execute(id, req.body);
-      res.status(200).json(product);
+      await this.updateProductUseCase.execute(id, req.body);
+      res.status(200).json({  message: "Product updated successfully"  });
+    } catch (error) {
+      res.status(400).json({ error: (error as Error).message });
+    }
+  }
+
+  async updateAvailabilityProduct(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      await this.updateAvailabilityProductUseCase.execute(id);
+      res.status(200).json({ message: "Product availability updated successfully" });
     } catch (error) {
       res.status(400).json({ error: (error as Error).message });
     }
@@ -69,9 +82,7 @@ export class ProductController {
     try {
       const { id } = req.params;
       await this.deleteProductUseCase.execute(id);
-      res.status(200).json({
-        message: "Product deleted successfully",
-      });
+      res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
       res.status(400).json({ error: (error as Error).message });
     }

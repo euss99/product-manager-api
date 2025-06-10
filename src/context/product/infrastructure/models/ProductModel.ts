@@ -29,4 +29,11 @@ export class ProductModel extends Model {
     allowNull: false,
   })
   declare price: number;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  })
+  declare availability: boolean;
 }
