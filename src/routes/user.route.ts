@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { UserController } from "@/context/user/infrastructure/controllers/UserController";
-import { validateSchema } from "@/helpers/middlewares/validateSchema";
+import { schemaMiddleware } from "@/helpers/middlewares/schema.middleware";
 import { idParamSchema } from "@/helpers/validations/params.validation";
 import { createUserSchema } from "@/helpers/validations/user.validation";
 
@@ -10,13 +10,13 @@ const userController = new UserController();
 
 router.post(
   "/",
-  validateSchema(createUserSchema, "body"),
+  schemaMiddleware(createUserSchema, "body"),
   userController.createUser.bind(userController)
 );
 
 router.delete(
   "/:id",
-  validateSchema(idParamSchema, "params"),
+  schemaMiddleware(idParamSchema, "params"),
   userController.deleteUser.bind(userController)
 );
 

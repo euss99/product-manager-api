@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { ProductController } from "@/context/product/infrastructure/controllers/ProductController";
 import { authMiddleware } from "@/helpers/middlewares/auth.middleware";
-import { validateSchema } from "@/helpers/middlewares/validateSchema";
+import { schemaMiddleware } from "@/helpers/middlewares/schema.middleware";
 import { idParamSchema } from "@/helpers/validations/params.validation";
 import {
   createProductSchema,
@@ -18,23 +18,23 @@ router.use(authMiddleware);
 router.get("/", productController.getAllProducts.bind(productController));
 router.post(
   "/",
-  validateSchema(createProductSchema, "body"),
+  schemaMiddleware(createProductSchema, "body"),
   productController.createProduct.bind(productController)
 );
 router.get(
   "/:id",
-  validateSchema(idParamSchema, "params"),
+  schemaMiddleware(idParamSchema, "params"),
   productController.getProductById.bind(productController)
 );
 router.put(
   "/:id",
-  validateSchema(idParamSchema, "params"),
-  validateSchema(updateProductSchema, "body"),
+  schemaMiddleware(idParamSchema, "params"),
+  schemaMiddleware(updateProductSchema, "body"),
   productController.updateProduct.bind(productController)
 );
 router.delete(
   "/:id",
-  validateSchema(idParamSchema, "params"),
+  schemaMiddleware(idParamSchema, "params"),
   productController.deleteProduct.bind(productController)
 );
 

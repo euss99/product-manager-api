@@ -3,9 +3,9 @@ import express from "express";
 
 import { initDatabase } from "@/config/db.config";
 import { envConfig } from "@/config/env.config";
-import authRoutes from "@/routes/AuthRoutes";
-import productRoutes from "@/routes/ProducRoutes";
-import userRoutes from "@/routes/UserRoutes";
+import authRoutes from "@/routes/auth.route";
+import productRoutes from "@/routes/product.route";
+import userRoutes from "@/routes/user.route";
 
 const app = express();
 const port = envConfig.PORT;

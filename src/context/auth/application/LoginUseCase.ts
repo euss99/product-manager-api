@@ -1,6 +1,6 @@
 import { Auth } from "@/context/auth/domain/entities/Auth";
 import { UserRepository } from "@/context/user/domain/repositories/UserRepository";
-import { comparePasswords } from "@/helpers/services/PasswordService";
+import { comparePasswords } from "@/helpers/services/password.service";
 
 export interface LoginDTO {
   email: string;

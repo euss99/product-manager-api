@@ -1,6 +1,6 @@
 import { User } from "@/context/user/domain/entities/User";
 import { UserRepository } from "@/context/user/domain/repositories/UserRepository";
-import { encryptPassword } from "@/helpers/services/PasswordService";
+import { encryptPassword } from "@/helpers/services/password.service";
 
 export interface CreateUserDTO {
   name: string;
