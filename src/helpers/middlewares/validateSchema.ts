@@ -3,7 +3,7 @@ import { z } from "zod";
 
 type ValidationSource = "body" | "params" | "query";
 
-export const validate = (
+export const validateSchema = (
   schema: z.ZodSchema,
   source: ValidationSource
 ) => {

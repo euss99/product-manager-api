@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { ProductController } from "@/context/product/infrastructure/controllers/ProductController";
-import { validate } from "@/helpers/middlewares/validate";
+import { validateSchema } from "@/helpers/middlewares/validateSchema";
 import { idParamSchema } from "@/helpers/validations/params.validation";
 import {
   createProductSchema,
@@ -15,23 +15,23 @@ const productController = new ProductController();
 router.get("/", productController.getAllProducts.bind(productController));
 router.post(
   "/",
-  validate(createProductSchema, "body"),
+  validateSchema(createProductSchema, "body"),
   productController.createProduct.bind(productController)
 );
 router.get(
   "/:id",
-  validate(idParamSchema, "params"),
+  validateSchema(idParamSchema, "params"),
   productController.getProductById.bind(productController)
 );
 router.put(
   "/:id",
-  validate(idParamSchema, "params"),
-  validate(updateProductSchema, "body"),
+  validateSchema(idParamSchema, "params"),
+  validateSchema(updateProductSchema, "body"),
   productController.updateProduct.bind(productController)
 );
 router.delete(
   "/:id",
-  validate(idParamSchema, "params"),
+  validateSchema(idParamSchema, "params"),
   productController.deleteProduct.bind(productController)
 );
 
