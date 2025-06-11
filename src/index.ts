@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
+import { corsOptions } from "@/config/cors.config";
 import { initDatabase } from "@/config/db.config";
 import { envConfig } from "@/config/env.config";
 import { swaggerSpec } from "@/config/swagger.config";
@@ -14,7 +15,7 @@ const app = express();
 const port = envConfig.PORT;
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Swagger documentation

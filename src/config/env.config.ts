@@ -12,6 +12,7 @@ export const envConfig = {
   DB_USER_NAME: process.env.DB_USER_NAME || "postgres",
   DB_PASSWORD: process.env.DB_PASSWORD || "postgres",
   DB_DATA_BASE: process.env.DB_DATA_BASE || "product_manager",
+  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:5173",
   // Aquí puedes agregar más variables de entorno según necesites
 } as const;
 
