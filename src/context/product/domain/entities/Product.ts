@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
+import ProductDTO from "@/context/product/domain/dtos/Product";
+
 export class Product {
   private readonly id: string;
   private name: string;
@@ -21,7 +23,6 @@ export class Product {
     this.availability = availability ?? true;
   }
 
-  // Getters
   getId(): string {
     return this.id;
   }
@@ -42,34 +43,17 @@ export class Product {
     return this.availability;
   }
 
-  // Setters
-  setName(name: string): void {
-    this.name = name;
-  }
-
-  setDescription(description: string): void {
-    this.description = description;
-  }
-
-  setPrice(price: number): void {
-    if (price < 0) {
-      throw new Error("El precio no puede ser negativo");
-    }
-    this.price = price;
+  updateProduct(name?: string, descripcion?: string, price?: number): void {
+    if (name) this.name = name;
+    if (descripcion) this.description = descripcion;
+    if (price) this.price = price;
   }
 
   toggleAvailability(): void {
     this.availability = !this.availability;
   }
 
-  // Método para convertir la entidad a un objeto plano
-  toJSON(): {
-    id: Product["id"];
-    name: string;
-    description: string;
-    price: number;
-    availability: boolean;
-    } {
+  toJSON(): ProductDTO {
     return {
       id: this.id,
       name: this.name,

@@ -1,7 +1,7 @@
 import { Product } from "@/context/product/domain/entities/Product";
 import { ProductRepository } from "@/context/product/domain/repositories/ProductRepository";
 
-export class UpdateAvailabilityProductUseCase {
+export class ToggleAvailabilityProductUseCase {
   constructor(private readonly productRepository: ProductRepository) {}
 
   async execute(id: Product["id"]): Promise<Product> {

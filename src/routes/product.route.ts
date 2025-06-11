@@ -40,7 +40,7 @@ router.patch(
   "/:id/availability",
   schemaMiddleware(idParamSchema, "params"),
   authMiddleware,
-  productController.updateAvailabilityProduct.bind(productController)
+  productController.toggleAvailabilityProduct.bind(productController)
 );
 
 router.delete(

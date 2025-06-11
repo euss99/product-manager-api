@@ -4,7 +4,7 @@ import { ProductModel } from "@/context/product/infrastructure/models/ProductMod
 
 export class SequelizeProductRepository implements ProductRepository {
   async save(product: Product): Promise<Product> {
-    const productModel = await ProductModel.create(product.toJSON());
+    const productModel = await ProductModel.create(product.toJSON() as Partial<ProductModel>);
     return new Product(
       productModel.name,
       productModel.description,

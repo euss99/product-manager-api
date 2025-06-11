@@ -4,7 +4,7 @@ import { UserModel } from "@/context/user/infrastructure/models/UserModel";
 
 export class SequelizeUserRepository implements UserRepository {
   async save(user: User): Promise<User> {
-    const userModel = await UserModel.create(user.toJSON());
+    const userModel = await UserModel.create(user.toJSON() as Partial<UserModel>);
     return new User(
       userModel.name,
       userModel.email,

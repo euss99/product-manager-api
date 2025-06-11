@@ -20,10 +20,8 @@ export class UpdateProductUseCase {
       throw new Error("Product not found");
     }
 
-    if (productData.name) existingProduct.setName(productData.name);
-    if (productData.description)
-      existingProduct.setDescription(productData.description);
-    if (productData.price) existingProduct.setPrice(productData.price);
+    const { name, description, price } = productData;
+    existingProduct.updateProduct( name, description, price);
 
     return await this.productRepository.update(id, existingProduct);
   }

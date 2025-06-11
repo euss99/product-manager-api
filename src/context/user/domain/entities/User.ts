@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
+import UserDTO from "@/context/user/domain/dtos/User";
+
 export class User {
   private readonly id: string;
   private name: string;
@@ -41,23 +43,14 @@ export class User {
     return this.birthday;
   }
 
-  updateName(name: string): void {
-    this.name = name;
+  updateUser(name?: string, email?: string, password?: string, birthday?: Date): void {
+    if (name) this.name = name;
+    if (email) this.email = email;
+    if (password) this.password = password;
+    if (birthday) this.birthday = birthday;
   }
 
-  updateEmail(email: string): void {
-    this.email = email;
-  }
-
-  updatePassword(password: string): void {
-    this.password = password;
-  }
-
-  updateBirthday(birthday: Date): void {
-    this.birthday = birthday;
-  }
-
-  toJSON(): { id: User["id"]; name: string; email: string; password: string; birthday: Date } {
+  toJSON(): UserDTO {
     return {
       id: this.id,
       name: this.name,
